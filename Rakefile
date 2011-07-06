@@ -5,7 +5,7 @@ require "yard"
 Bundler::GemHelper.install_tasks
 
 Rake::TestTask.new do |t|
-  t.test_files = FileList["test/test*.rb"]
+  t.test_files = FileList["test/*_test.rb"]
 end
 
 YARD::Rake::YardocTask.new do |t|
