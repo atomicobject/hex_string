@@ -32,8 +32,13 @@ module HexString
   # Eg:
   #   >> "hello world".to\_hex\_string
   #   => "68 65 6c 6c 6f 20 77 6f 72 6c 64"
-	def to_hex_string
-    self.unpack('H*').first.gsub(/(..)/,'\1 ').rstrip
+	def to_hex_string(readable = true)
+    unpacked = self.unpack('H*').first
+    if readable
+      unpacked.gsub(/(..)/,'\1 ').rstrip
+    else
+      unpacked
+    end
 	end
 end
 
