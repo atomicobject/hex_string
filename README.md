@@ -24,6 +24,10 @@ Examples
     >> File.read("/bin/ls")[0..3].to_hex_string
     => "ca fe ba be"
 
+    # Omit spaces in hex string output:
+    >> "hello".to_hex_string(false)
+    => "68656c6c6f"
+
 Motivation
 ----------
 When working with binary message or file formats, we often want to have a peek
