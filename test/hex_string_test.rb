@@ -50,6 +50,10 @@ class HexStringTest < Test::Unit::TestCase
 		assert_equal "68 65 6c 6c 6f", "hello".to_hex_string
 	end
 
+	should "convert byte strings into a single hex string without spaces" do
+		assert_equal "68656c6c6f", "hello".to_hex_string(false)
+	end
+
 	should "provide empty hex strings when operating on empty strings" do 
 	  assert_equal "", "".to_hex_string
 	end
