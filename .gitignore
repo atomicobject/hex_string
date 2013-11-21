@@ -3,3 +3,5 @@ pkg/*
 .bundle
 doc
 .yardoc
+.ruby-version
+Gemfile.lock
