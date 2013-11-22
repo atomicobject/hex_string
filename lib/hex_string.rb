@@ -19,7 +19,12 @@ module HexString
 			raise "Can't translate a string unless it has an even number of digits"
 		end
     raise "Can't translate non-hex characters" if stripped =~ /[^0-9A-Fa-f]/
-    [stripped].pack('H*')
+    res = [stripped].pack('H*')
+    if RUBY_VERSION =~ /1.8/
+      res
+    else
+      res.force_encoding("ascii-8bit")
+    end
 	end
 
   # Convert binary data into a human-readable hex string.

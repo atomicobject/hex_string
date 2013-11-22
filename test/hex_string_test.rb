@@ -11,21 +11,29 @@ class HexStringTest < Test::Unit::TestCase
 		end
 	end
 
+  def fix_encoding(str)
+    if RUBY_VERSION =~ /1.8/
+      str
+    else
+      str.force_encoding("ascii-8bit")
+    end
+  end
+
   should "allow human readable hex strings to become actual byte strings" do
 		human = "0102030405060708090a0b0c0d0e0f"
-		expect = "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f"
+		expect = fix_encoding("\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f")
 		assert_equal expect, human.to_byte_string
 	end
 
 	should "not care about case of a-f or A-F" do
 		human = "aabbccddeeffAABBCCDDEEFF"
-		expect = "\xaa\xbb\xcc\xdd\xee\xff\xaa\xbb\xcc\xdd\xee\xff"
+		expect = fix_encoding("\xaa\xbb\xcc\xdd\xee\xff\xaa\xbb\xcc\xdd\xee\xff")
 		assert_equal expect, human.to_byte_string
 	end
 
 	should "ignore whitespace of all kinds" do
 		human = "\t\t\taa   \t\t bb c\nc d\tdee  ffAABBCCDDEEFF\t \n\r"
-		expect = "\xaa\xbb\xcc\xdd\xee\xff\xaa\xbb\xcc\xdd\xee\xff"
+		expect = fix_encoding("\xaa\xbb\xcc\xdd\xee\xff\xaa\xbb\xcc\xdd\xee\xff")
 		assert_equal expect, human.to_byte_string
 	end
 
