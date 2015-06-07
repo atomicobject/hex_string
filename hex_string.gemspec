@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+require 'hex_string/version'
 
 Gem::Specification.new do |s|
   s.name        = "hex_string"
-  s.version     = "1.0.1"
+  s.version     = HexString::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["David Crosby", "Micah Alles"]
   s.email       = ["crosby@atomicobject.com", "alles@atomicobject.com"]

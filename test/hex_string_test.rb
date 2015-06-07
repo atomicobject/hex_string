@@ -1,5 +1,6 @@
 require 'test/unit'
-require File.expand_path(File.dirname(__FILE__) + '/../lib/hex_string')
+$: << File.expand_path(File.dirname(__FILE__) + '/../lib')
+require 'hex_string/legacy_string_mixins'
 
 class HexStringTest < Test::Unit::TestCase
 	def self.should(behave,&block)
